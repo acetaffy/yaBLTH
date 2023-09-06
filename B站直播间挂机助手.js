@@ -2189,10 +2189,10 @@
             (!MY_API.CONFIG.COIN || (MY_API.CONFIG.COIN && !checkNewDay(MY_API.CACHE.MainSite_coin_TS)))
           )
             return runMidnight(() => MY_API.DailyReward.dynamic(), `主站任务 - ${MY_API.CONFIG.WATCH ? '观看视频' : ''} ${MY_API.CONFIG.SHARE ? '分享视频' : ''} ${MY_API.CONFIG.COIN ? '投币' : ''}`);
-          MY_API.DailyReward.coin_exp = await BAPI.DailyReward.exp().then((response) => {
+          MY_API.DailyReward.coin_exp = await BAPI.x.getTodayExp().then((response) => {
             MYDEBUG('DailyReward.run: API.DailyReward.exp', response);
             if (response.code === 0) {
-              return response.number;
+              return response.data;
             } else {
               window.toast(`[自动每日奖励] 获取今日已获得的投币经验出错 ${response.message}`, 'caution');
               return delayCall(() => MY_API.DailyReward.run());
