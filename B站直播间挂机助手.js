@@ -17,7 +17,7 @@
 // @compatible     firefox 77 or later
 // @compatible     opera 69 or later
 // @compatible     safari 13.1 or later
-// @version        6.1.6
+// @version        6.1.7
 // @match          *://live.bilibili.com/*
 // @exclude        *://live.bilibili.com/?*
 // @run-at         document-start
@@ -821,7 +821,7 @@
           if (versionStringCompare(cache, version) === -1) {
             // cache < version
             const clientMliList = [
-              `修复每日投币失效的Bug。`,
+              `修复点赞失败的Bug。`,
             ];
             function createHtml(mliList) {
               if (mliList.length === 0) return '无';
