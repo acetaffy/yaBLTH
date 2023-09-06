@@ -30,7 +30,7 @@
 // @require        https://gcore.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4dbe95160c430bc64757580f07489bb11e766fcb/assets/js/library/bliveproxy.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@8ac823ac669ad87fb39a63b6bfe02c01c0c30f89/assets/js/library/libWbiSign.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@8ac823ac669ad87fb39a63b6bfe02c01c0c30f89/assets/js/library/BilibiliAPI_Mod.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@8c6ce354da8c79884f74ecc915c2a2fcb258072e/assets/js/library/BilibiliAPI_Mod.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4368883c643af57c07117e43785cd28adcb0cb3e/assets/js/library/layer.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@f9fc6466ae78ead12ddcd2909e53fcdcc7528f78/assets/js/library/Emitter.min.js
 // @require        https://gcore.jsdelivr.net/npm/hotkeys-js@3.8.7/dist/hotkeys.min.js
@@ -476,7 +476,7 @@
         '<div data-v-6d89404b="" data-v-42ea937d="" title="" class="icon-ctnr live-skin-normal-a-text pointer" id = "blth_like_button" style="line-height: 16px;margin-left: 15px;"><i data-v-6d89404b="" class="v-middle icon-font icon-good" style="font-size: 16px;"></i><span data-v-6d89404b="" class="action-text v-middle" style="font-size: 12px;margin-left: 5px;">点赞</span></div>'
       );
       like_button.click(() => {
-        BAPI.xlive.likeReportV3(Live_info.room_id, Live_info.uid).then((response) => {
+        BAPI.xlive.likeReportV3(Live_info.room_id, Live_info.uid, times = 1).then((response) => {
           MYDEBUG(`点击点赞按钮 likeReportV3(${Live_info.room_id}) response`, response);
           const offest = like_button.offset(),
             width = like_button.width(),
