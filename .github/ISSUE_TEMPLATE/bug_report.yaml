@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         ## 欢迎
-        你可能可以在本项目的[README](https://github.com/andywang425/BLTH/blob/master/README.md)，脚本的内置说明（控制面板上蓝色的小问号）或[已存在的issue](https://github.com/andywang425/BLTH/issues)中找到答案。
+        你可能可以在本项目的[README](https://github.com/acetaffy/yaBLTH/blob/master/README.md)，脚本的内置说明（控制面板上蓝色的小问号）或[已存在的issue](https://github.com/acetaffy/yaBLTH/issues)中找到答案。  
         <br />
 
   - id: describe
@@ -64,7 +64,7 @@ body:
       label: "运行日志"
       description: |
         脚本日志窗口中的普通日志或控制台日志。  
-        控制台日志的打开方式见README中[控制台日志](https://github.com/andywang425/BLTH/blob/master/README.md#控制台日志)一节。  
+        控制台日志的打开方式见README中[控制台日志](https://github.com/acetaffy/yaBLTH/blob/master/README.md#控制台日志)一节。  
         普通日志请直接截图。控制台日志可截图或右键导出。
       placeholder: |
         请在此黏贴运行日志。
