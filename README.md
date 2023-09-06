@@ -1,14 +1,12 @@
-<p align ="center"><img src="https://gcore.jsdelivr.net/gh/andywang425/BLTH@7d7ca494edd314806460e24c6b59be8ae1bd7dc6/img/script-icon.png"></p>
-<p align="center"><img src="https://img.shields.io/badge/TamperMonkey_4.18.1-pass-green.svg" alt="TamperMonkey 4.18.1"> <img src="https://img.shields.io/badge/Violentmonkey_2.13.4-pass-green.svg" alt="Violentmonkey 2.13.4"> <a href="https://github.com/andywang425/BLTH/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"> <a href="https://jq.qq.com/?_wv=1027&k=fCSfWf1O"> <a href="https://github.com/andywang425/BLTH/stargazers"><img src="https://img.shields.io/github/stars/andywang425/BLTH?style=flat" alt="Stars"></a> <a href="https://github.com/andywang425/BLTH/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/andywang425/BLTH"></a></p>
-<h1 align="center">B站直播间挂机助手</h1>
+<div align ="center">
+    <img alt="BLTH logo" src="https://raw.githubusercontent.com/acetaffy/yaBLTH/master/assets/img/logo.min.svg" width="150">
+</div>
+
+<h1 align="center">yaBLTH</h1>
 
 ### 安装方法
 
-### 1. 点击 [BLTH_github](https://raw.githubusercontent.com/andywang425/BLTH/master/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.user.js) 从 github 安装脚本
-
-### 2. 点击 [BLTH_greasyfork](https://greasyfork.org/zh-CN/scripts/406048-b%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B) 前往 [greasyfork](https://greasyfork.org) 安装脚本
-
-### 3. 点击 [BLTH_openuserjs](https://openuserjs.org/scripts/andywang425/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B) 前往 [openuserjs](https://openuserjs.org) 安装脚本
+点击 [BLTH_github](https://raw.githubusercontent.com/acetaffy/yaBLTH/master/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.user.js) 从 github 安装脚本
 
 ---
 
@@ -46,8 +44,6 @@
 
 ### 脚本代码格式
 
-本脚本在三个平台上的代码格式有所不同
-
 <table>
     <tr>
         <td align ="center">平台 / 格式</td>
@@ -58,16 +54,6 @@
         <td align ="center">github</td>
         <td align ="center">✔</td>
         <td align ="center">✔</td>
-    </tr>
-    <tr>
-        <td align ="center">greasyfork</td>
-        <td align ="center">✔</td>
-        <td align ="center">/</td>
-    </tr>
-    <tr>
-        <td align ="center">openuserjs</td>
-        <td align ="center">✔</td>
-        <td align ="center">/</td>
     </tr>
 </table>
 
@@ -92,12 +78,7 @@
 ### 关于反馈
 
 - 如果使用脚本过程中遇到问题，可以先按上述步骤[开启控制台日志](#控制台日志)，然后关掉无关功能再次运行脚本并在控制台中寻找相关错误信息。若能找到请在反馈 bug 时附上这些控制台日志。
-- 反馈 bug 请点击[bug_report](https://github.com/andywang425/BLTH/issues/new?assignees=dong-jpg&labels=bug&template=bug_report.yaml)。
-
-### 用户交流群
-
-- QQ 频道：[点我加入 aw 的频道](https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&appChannel=share&inviteCode=1W7eVLs&businessType=9&from=181074&biz=ka&shareSource=5)。
-- 非官方电报群：[LaTiao01](https://t.me/LaTiao01)。
+- 反馈 bug 请点击[bug_report](https://github.com/acetaffy/yaBLTH/issues/new?assignees=dong-jpg&labels=bug&template=bug_report.yaml)。
 
 ---
 
@@ -114,7 +95,7 @@
 
 ## 参与开发
 
-如果你想参与到本项目的开发中来，请阅读[开发规范](https://github.com/andywang425/BLTH/blob/master/CONTRIBUTING.md)。
+如果你想参与到本项目的开发中来，请阅读[开发规范](https://github.com/acetaffy/yaBLTH/blob/master/CONTRIBUTING.md)。
 
 ---
 
@@ -122,7 +103,7 @@
 
 本项目以`MIT`许可证开源。
 
-<a href="https://github.com/andywang425/BLTH/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/andywang425/BLTH?style=for-the-badge"></a>
+<a href="https://github.com/acetaffy/yaBLTH/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/acetaffy/yaBLTH?style=for-the-badge"></a>
 
 ---
 
@@ -145,7 +126,7 @@
 - [Ajax-hook](https://github.com/wendux/Ajax-hook) (MIT)：用于拦截浏览器 XMLHttpRequest 的库。
 - [jQuery](https://github.com/jquery/jquery) (MIT)
 - [bliveproxy](https://github.com/xfgryujk/bliveproxy/blob/master/bliveproxy.user.js) (MIT)：B 站直播 websocket hook 框架。
-- [BilibiliAPI_Mod](https://github.com/andywang425/BLTH/blob/master/assets/js/library/BilibiliAPI_Mod.js) (MIT)：各种 B 站 API。
+- [BilibiliAPI_Mod](https://github.com/acetaffy/yaBLTH/blob/master/assets/js/library/BilibiliAPI_Mod.js) (MIT)：各种 B 站 API。
 - [layer](https://github.com/sentsin/layer/blob/master/dist/layer.js) (MIT)：web 弹层组件。
 - [emitter](https://github.com/component/emitter) (MIT): 事件触发器组件。
 - [hotkeys](https://github.com/jaywcjlove/hotkeys) (MIT)：一个强健的 Javascript 库，用于捕获键盘输入和输入的组合键。
@@ -156,9 +137,9 @@
 本脚本引用的外部资源：
 
 - [layer.css](https://github.com/sentsin/layer/blob/master/dist/theme/default/layer.css)：layer.js 的内置样式。
-- [myCss.css](https://github.com/andywang425/BLTH/blob/master/assets/css/myCss.css)：脚本样式。
-- [main.html](https://github.com/andywang425/BLTH/blob/master/assets/html/main.html)：脚本控制面板的 html。
-- [eula.html](https://github.com/andywang425/BLTH/blob/master/assets/html/eula.html)：最终用户许可协议。
+- [myCss.css](https://github.com/acetaffy/yaBLTH/blob/master/assets/css/myCss.css)：脚本样式。
+- [main.html](https://github.com/acetaffy/yaBLTH/blob/master/assets/html/main.html)：脚本控制面板的 html。
+- [eula.html](https://github.com/acetaffy/yaBLTH/blob/master/assets/html/eula.html)：最终用户许可协议。
 
 ---
 
@@ -186,7 +167,7 @@
 
 # 更新日志
 
-完整更新日志见[update-log.md](https://github.com/andywang425/BLTH/blob/master/assets/markdown/update-log.md)。
+完整更新日志见[update-log.md](https://github.com/acetaffy/yaBLTH/blob/master/assets/markdown/update-log.md)。
 
 ---
 
