@@ -4,9 +4,12 @@
 
 <h1 align="center">yaBLTH</h1>
 
+**这是 BLTH 6.x.x 版本的 fork，由 acetaffy 提供维护。**  
+**原作者为 [andywang425](https://github.com/andywang425/)，原仓库地址 [https://github.com/andywang425/BLTH](https://github.com/andywang425/BLTH)**
+
 ### 安装方法
 
-点击 [BLTH_github](https://raw.githubusercontent.com/acetaffy/yaBLTH/master/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.user.js) 从 github 安装脚本
+点击 [yaBLTH_github](https://raw.githubusercontent.com/acetaffy/yaBLTH/master/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.user.js) 从 github 安装脚本
 
 ---
 
