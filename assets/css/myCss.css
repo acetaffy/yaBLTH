@@ -219,7 +219,7 @@ html[lab-style*=dark] .blth_fs {
 .layui-layer-content ul {
     margin-block-start: 0px;
     margin-block-end: 0px;
-    padding-inline-start: 0px;
+    padding-inline-start: 10px;
     margin: 10px
 }
 .layui-layer-content::-webkit-scrollbar {
@@ -320,7 +320,10 @@ html[lab-style*=dark] .layui-layer a {
 }
 
 html[lab-style*=dark] .layui-layer-btn .layui-layer-btn0 {
-  border-color: #1E9FFF;
-  background-color: #1E9FFF;
-  color: #fff;
+    border-color: #1E9FFF;
+    background-color: #1E9FFF;
+    color: #fff;
+}
+html[lab-style*=dark] hr {
+    border:1px solid var(--Ga2);
 }
