@@ -2058,7 +2058,7 @@
               return p.then(() => {
                 if (re.data.multiply === 2) {
                   MYDEBUG('API.x.getCoinInfo', `已投币两个 aid = ${obj.aid}`);
-                  return MY_API.DailyReward.coin(vlist, n, i + 1);
+                  return MY_API.DailyReward.coin(cards, n, i + 1);
                 } else {
                   if (re.data.multiply === 1) num = 1;
                   return BAPI.DailyReward.coin(obj.aid, num).then((response) => {
@@ -2073,7 +2073,7 @@
                     } else if (response.code === 34003) {
                       // 非法的投币数量
                       if (one) return MY_API.DailyReward.coin(cards, n, i + 1);
-                      return MY_API.DailyReward.coin(cards, n, i, true);
+                      return MY_API.DailyReward.coin(cards, n, i + 1, true);
                     } else if (response.code === 34005) {
                       // 塞满啦！先看看库存吧~
                       return MY_API.DailyReward.coin(cards, n, i + 1);

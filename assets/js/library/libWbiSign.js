@@ -16,7 +16,7 @@ class Wbi {
   // 对 imgKey 和 subKey 进行字符顺序打乱编码
   static getMixinKey(orig) {
     let temp = ''
-    mixinKeyEncTab.forEach((n) => {
+    this.mixinKeyEncTab.forEach((n) => {
       temp += orig[n]
     })
     return temp.slice(0, 32)
@@ -24,7 +24,7 @@ class Wbi {
 
   // 为请求参数进行 wbi 签名
   static encWbi(params, img_key, sub_key) {
-    const mixin_key = getMixinKey(img_key + sub_key),
+    const mixin_key = this.getMixinKey(img_key + sub_key),
       curr_time = Math.round(Date.now() / 1000),
       chr_filter = /[!'\(\)*]/g
     let query = []
