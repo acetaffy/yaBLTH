@@ -17,7 +17,7 @@
 // @compatible     firefox 77 or later
 // @compatible     opera 69 or later
 // @compatible     safari 13.1 or later
-// @version        6.1.7
+// @version        6.1.8
 // @match          *://live.bilibili.com/*
 // @exclude        *://live.bilibili.com/?*
 // @run-at         document-start
@@ -29,8 +29,8 @@
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@bca9261faa84ffd8f804c85c1a5153d3aa27a9a3/assets/js/library/Ajax-hook.min.js
 // @require        https://gcore.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4dbe95160c430bc64757580f07489bb11e766fcb/assets/js/library/bliveproxy.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@8ac823ac669ad87fb39a63b6bfe02c01c0c30f89/assets/js/library/libWbiSign.min.js
-// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@8c6ce354da8c79884f74ecc915c2a2fcb258072e/assets/js/library/BilibiliAPI_Mod.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/libWbiSign.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/BilibiliAPI_Mod.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4368883c643af57c07117e43785cd28adcb0cb3e/assets/js/library/layer.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@f9fc6466ae78ead12ddcd2909e53fcdcc7528f78/assets/js/library/Emitter.min.js
 // @require        https://gcore.jsdelivr.net/npm/hotkeys-js@3.8.7/dist/hotkeys.min.js
@@ -38,7 +38,7 @@
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@c117d15784f92f478196de0129c8e5653a9cb32e/assets/js/library/BiliveHeart.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4c2e8bc541656a8ea6d62d6055e8fd149caa4210/assets/js/library/libBilibiliToken.min.js
 // @resource       layerCss https://gcore.jsdelivr.net/gh/andywang425/BLTH@d25aa353c8c5b2d73d2217b1b43433a80100c61e/assets/css/layer.css
-// @resource       myCss    https://gcore.jsdelivr.net/gh/andywang425/BLTH@5bcc31da7fb98eeae8443ff7aec06e882b9391a8/assets/css/myCss.min.css
+// @resource       myCss    https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@9d35ee7e3e956c8158c8c0997e78d7ee2068d8ea/assets/css/myCss.min.css
 // @resource       main     https://gcore.jsdelivr.net/gh/andywang425/BLTH@16ad988dce34491d8479416911a2ac4691df45c3/assets/html/main.min.html
 // @resource       eula     https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@d1e436b7eb7a0e48278d82edcca0067f97906115/assets/html/eula.min.html
 // @grant          unsafeWindow
@@ -820,26 +820,26 @@
           const cache = SP_CONFIG.lastShowUpdateMsgVersion || '0';
           if (versionStringCompare(cache, version) === -1) {
             // cache < version
-            const clientMliList = [
-              `修复点赞失败的Bug。`,
-            ];
-            function createHtml(mliList) {
-              if (mliList.length === 0) return '无';
-              let mliHtml = '';
-              for (const mli of mliList) {
-                mliHtml = mliHtml + '<mli>' + mli + '</mli>';
-              }
-              return mliHtml;
-            }
             myopen({
               title: `${version}更新提示`,
               area: [String($(window).width() * 0.382) + 'px', String($(window).height() * 0.618) + 'px'],
               content: `
-                <h2>更新内容</h2>
-                <mol>${createHtml(clientMliList)}</mol>
-                <hr><em style="color:grey;">
-                如果在使用过程中遇到问题，请到 ${linkMsg('https://github.com/acetaffy/yaBLTH/issues', 'github')}反馈。
-                </em>
+<h2>更新内容</h2>
+
+<ul>
+<li><p>修复每日投币bug</p>
+<ul>
+<li>修复动态第一个视频已经投2币后，不继续运行的问题</li>
+<li>修复「给用户的视频投币」的功能</li>
+</ul>
+</li>
+<li><p>更适配b站深色模式</p>
+</li>
+</ul>
+
+<hr><em style="color:grey;">
+如果在使用过程中遇到问题，请到 ${linkMsg('https://github.com/acetaffy/yaBLTH/issues', 'github')}反馈。
+</em>
                 `,
             });
             SP_CONFIG.lastShowUpdateMsgVersion = version;
@@ -2058,7 +2058,7 @@
               return p.then(() => {
                 if (re.data.multiply === 2) {
                   MYDEBUG('API.x.getCoinInfo', `已投币两个 aid = ${obj.aid}`);
-                  return MY_API.DailyReward.coin(vlist, n, i + 1);
+                  return MY_API.DailyReward.coin(cards, n, i + 1);
                 } else {
                   if (re.data.multiply === 1) num = 1;
                   return BAPI.DailyReward.coin(obj.aid, num).then((response) => {
@@ -2073,7 +2073,7 @@
                     } else if (response.code === 34003) {
                       // 非法的投币数量
                       if (one) return MY_API.DailyReward.coin(cards, n, i + 1);
-                      return MY_API.DailyReward.coin(cards, n, i, true);
+                      return MY_API.DailyReward.coin(cards, n, i + 1, true);
                     } else if (response.code === 34005) {
                       // 塞满啦！先看看库存吧~
                       return MY_API.DailyReward.coin(cards, n, i + 1);
@@ -3238,67 +3238,6 @@
         W.location.reload();
       }, delay);
     }
-  }
-  function checkUpdate(version) {
-    if (!checkNewDay(noticeJson.lastCheckUpdateTs)) return;
-    const headers = {
-      Accept: `text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9`,
-      'Upgrade-Insecure-Requests': '1',
-      'Sec-Fetch-Site': 'none',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-User': '?1',
-      'Sec-Fetch-Dest': 'document',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-    };
-    XHR({
-      GM: true,
-      anonymous: true,
-      method: 'GET',
-      url: 'https://andywang.top:3001/api/v1/notice',
-      headers: headers,
-      responseType: 'json',
-    }).then((response) => {
-      MYDEBUG('检查更新 checkUpdate', response);
-      if (!response || response.response.status !== 200) return MYERROR(`[检查更新] 获取notice.json出错`);
-      noticeJson = response.body.data;
-      noticeJson.lastCheckUpdateTs = ts_ms();
-      GM_setValue(`noticeJson`, noticeJson);
-      const scriptVersion = noticeJson.version;
-      const greasyforkOpenTabOptions = { active: true, insert: true, setParent: true };
-      if (versionStringCompare(version, scriptVersion) === -1) {
-        // version < scriptVersion
-        // 需要更新
-        let updateSource, updateURL;
-        if (GM_info.script.updateURL === null) {
-          updateSource = 'Greasy Fork';
-          updateURL = 'https://greasyfork.org/scripts/406048-b%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B';
-        } else {
-          updateSource = 'BLTH-server';
-          updateURL = 'https://andywang.top:3001/api/v1/BLTH.user.js';
-        }
-        let index = myconfirm(
-          `检测到新版本 <strong>${scriptVersion}</strong>。<br>是否从 ${updateSource} 更新脚本？`,
-          {
-            title: '更新脚本',
-            btn: ['是', '否'],
-          },
-          function () {
-            // 更新
-            if (updateSource === 'Greasy Fork') {
-              layer.close(index);
-              GM_openInTab(updateURL, greasyforkOpenTabOptions);
-            } else {
-              updateBLTH(updateURL);
-              mymsg('正在更新...', { time: 2000 });
-            }
-          },
-          function () {
-            // 不更新
-          }
-        );
-      }
-    });
   }
   /**
    * 获取粉丝勋章列表和真实直播间号

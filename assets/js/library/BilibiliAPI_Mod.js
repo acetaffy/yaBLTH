@@ -1202,16 +1202,20 @@ var BAPI = {
             });
         },
         getUserSpace: (mid, ps, tid, pn, keyword, order, jsonp) => { //查看用户动态
-            return BAPI.ajax({
-                url: '//api.bilibili.com/x/space/arc/search',
-                data: {
-                    mid: mid, // uid
-                    ps: ps, // 30
-                    tid: tid, // 0
-                    pn: pn, // 1 2 3页数
-                    keyword: keyword, // ''
-                    order: order, // pubdate
-                    jsonp: jsonp // jsonp
+            return BAPI_WBI_SIGN().then(resp => {
+                if (resp) {
+                    return BAPI.ajax({
+                        url: '//api.bilibili.com/x/space/wbi/arc/search?' + Wbi.encWbi({
+                            mid: mid, // uid
+                            ps: ps, // 30
+                            tid: tid, // 0
+                            pn: pn, // 1 2 3页数
+                            keyword: keyword, // ''
+                            order: order, // pubdate
+                            jsonp: jsonp, // jsonp
+                            wts: BAPI_ts_s(),
+                        }, resp.img_key, resp.sub_key)
+                    });
                 }
             });
         },

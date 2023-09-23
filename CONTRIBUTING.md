@@ -48,7 +48,6 @@ BLTH
    ├─js                         JS
    │  ├─development             用于方便开发的JS文件
    │  └─library                 脚本需要的JS库文件
-   ├─json                       脚本需要的JSON文件
    └─markdown                   MARKDOWN文件，存放非github平台的脚本介绍和更新日志
 ```
 
@@ -107,7 +106,6 @@ BLTH
 - 如果你调试了 [BLTH-server](https://github.com/andywang425/BLTH-server) 相关的功能，记得删除元数据中的`// @connect localhost`。
 - 如果你更新了`@require`或`@resource`中的文件，记得先将这些文件的修改提交到仓库，然后把文件地址`file:///<...>`替换为 cdn 链接`https://gcore.jsdelivr.net/gh/<你的github用户名>/BLTH@<...>`。请不要删除你 fork 的仓库，这可能会导致用户无法正常获取这些依赖。
 - 更新脚本元数据中的版本号`// @version`。通常来说在最后一位+1 即可，满 10 则向前进位。
-- 更新位于`/assets/json/`目录下的`notice.json`中的版本号，然后压缩该 json 文件得到`notice.min.json`。
 - 攥写更新日志`update-log.md`，格式仿照先前的日志写即可。写完后复制更新内容，之后会用到。
 - 更新脚本内置的更新说明（每次更新后第一次运行时弹窗的内容）。运行`/assets/js/development/`目录下的`updateLog2ArrayString.js`，粘贴你刚刚写的更新内容，回车，将剪切板的内容复制到脚本内置更新说明的位置（在代码中搜索`${version}更新提示`可快速定位，数组`clientMliList`是储存更新说明的）。
 - （本步骤可忽略）给资源文件添加用于校验子资源完整性的 md5 值。运行`/assets/js/development/`目录下的`addRequireMd5.js`得到新的脚本元数据，结果会被保存到剪切板。用剪切板中的内容覆盖脚本的头部元数据即可。注意，如果部分 md5 计算失败而你想要手动加上 md5 的话，需计算从 cdn 获取到的内容的 md5，不能直接计算本地文件的 md5，因为上传到 cdn 之后文件的 md5 可能会变化（但是内容不会变，可能是换行符之类的导致的）。
