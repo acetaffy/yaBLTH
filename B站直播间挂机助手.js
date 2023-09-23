@@ -3239,67 +3239,6 @@
       }, delay);
     }
   }
-  function checkUpdate(version) {
-    if (!checkNewDay(noticeJson.lastCheckUpdateTs)) return;
-    const headers = {
-      Accept: `text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9`,
-      'Upgrade-Insecure-Requests': '1',
-      'Sec-Fetch-Site': 'none',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-User': '?1',
-      'Sec-Fetch-Dest': 'document',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-    };
-    XHR({
-      GM: true,
-      anonymous: true,
-      method: 'GET',
-      url: 'https://andywang.top:3001/api/v1/notice',
-      headers: headers,
-      responseType: 'json',
-    }).then((response) => {
-      MYDEBUG('检查更新 checkUpdate', response);
-      if (!response || response.response.status !== 200) return MYERROR(`[检查更新] 获取notice.json出错`);
-      noticeJson = response.body.data;
-      noticeJson.lastCheckUpdateTs = ts_ms();
-      GM_setValue(`noticeJson`, noticeJson);
-      const scriptVersion = noticeJson.version;
-      const greasyforkOpenTabOptions = { active: true, insert: true, setParent: true };
-      if (versionStringCompare(version, scriptVersion) === -1) {
-        // version < scriptVersion
-        // 需要更新
-        let updateSource, updateURL;
-        if (GM_info.script.updateURL === null) {
-          updateSource = 'Greasy Fork';
-          updateURL = 'https://greasyfork.org/scripts/406048-b%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B';
-        } else {
-          updateSource = 'BLTH-server';
-          updateURL = 'https://andywang.top:3001/api/v1/BLTH.user.js';
-        }
-        let index = myconfirm(
-          `检测到新版本 <strong>${scriptVersion}</strong>。<br>是否从 ${updateSource} 更新脚本？`,
-          {
-            title: '更新脚本',
-            btn: ['是', '否'],
-          },
-          function () {
-            // 更新
-            if (updateSource === 'Greasy Fork') {
-              layer.close(index);
-              GM_openInTab(updateURL, greasyforkOpenTabOptions);
-            } else {
-              updateBLTH(updateURL);
-              mymsg('正在更新...', { time: 2000 });
-            }
-          },
-          function () {
-            // 不更新
-          }
-        );
-      }
-    });
-  }
   /**
    * 获取粉丝勋章列表和真实直播间号
    * @param {Number} page
