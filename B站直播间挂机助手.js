@@ -17,7 +17,7 @@
 // @compatible     firefox 77 or later
 // @compatible     opera 69 or later
 // @compatible     safari 13.1 or later
-// @version        6.1.7
+// @version        6.1.8
 // @match          *://live.bilibili.com/*
 // @exclude        *://live.bilibili.com/?*
 // @run-at         document-start
@@ -29,8 +29,8 @@
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@bca9261faa84ffd8f804c85c1a5153d3aa27a9a3/assets/js/library/Ajax-hook.min.js
 // @require        https://gcore.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4dbe95160c430bc64757580f07489bb11e766fcb/assets/js/library/bliveproxy.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@8ac823ac669ad87fb39a63b6bfe02c01c0c30f89/assets/js/library/libWbiSign.min.js
-// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@8c6ce354da8c79884f74ecc915c2a2fcb258072e/assets/js/library/BilibiliAPI_Mod.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/libWbiSign.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/BilibiliAPI_Mod.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4368883c643af57c07117e43785cd28adcb0cb3e/assets/js/library/layer.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@f9fc6466ae78ead12ddcd2909e53fcdcc7528f78/assets/js/library/Emitter.min.js
 // @require        https://gcore.jsdelivr.net/npm/hotkeys-js@3.8.7/dist/hotkeys.min.js
@@ -38,7 +38,7 @@
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@c117d15784f92f478196de0129c8e5653a9cb32e/assets/js/library/BiliveHeart.min.js
 // @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4c2e8bc541656a8ea6d62d6055e8fd149caa4210/assets/js/library/libBilibiliToken.min.js
 // @resource       layerCss https://gcore.jsdelivr.net/gh/andywang425/BLTH@d25aa353c8c5b2d73d2217b1b43433a80100c61e/assets/css/layer.css
-// @resource       myCss    https://gcore.jsdelivr.net/gh/andywang425/BLTH@5bcc31da7fb98eeae8443ff7aec06e882b9391a8/assets/css/myCss.min.css
+// @resource       myCss    https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@9d35ee7e3e956c8158c8c0997e78d7ee2068d8ea/assets/css/myCss.min.css
 // @resource       main     https://gcore.jsdelivr.net/gh/andywang425/BLTH@16ad988dce34491d8479416911a2ac4691df45c3/assets/html/main.min.html
 // @resource       eula     https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@d1e436b7eb7a0e48278d82edcca0067f97906115/assets/html/eula.min.html
 // @grant          unsafeWindow
@@ -820,26 +820,26 @@
           const cache = SP_CONFIG.lastShowUpdateMsgVersion || '0';
           if (versionStringCompare(cache, version) === -1) {
             // cache < version
-            const clientMliList = [
-              `修复点赞失败的Bug。`,
-            ];
-            function createHtml(mliList) {
-              if (mliList.length === 0) return '无';
-              let mliHtml = '';
-              for (const mli of mliList) {
-                mliHtml = mliHtml + '<mli>' + mli + '</mli>';
-              }
-              return mliHtml;
-            }
             myopen({
               title: `${version}更新提示`,
               area: [String($(window).width() * 0.382) + 'px', String($(window).height() * 0.618) + 'px'],
               content: `
-                <h2>更新内容</h2>
-                <mol>${createHtml(clientMliList)}</mol>
-                <hr><em style="color:grey;">
-                如果在使用过程中遇到问题，请到 ${linkMsg('https://github.com/acetaffy/yaBLTH/issues', 'github')}反馈。
-                </em>
+<h2>更新内容</h2>
+
+<ul>
+<li><p>修复每日投币bug</p>
+<ul>
+<li>修复动态第一个视频已经投2币后，不继续运行的问题</li>
+<li>修复「给用户的视频投币」的功能</li>
+</ul>
+</li>
+<li><p>更适配b站深色模式</p>
+</li>
+</ul>
+
+<hr><em style="color:grey;">
+如果在使用过程中遇到问题，请到 ${linkMsg('https://github.com/acetaffy/yaBLTH/issues', 'github')}反馈。
+</em>
                 `,
             });
             SP_CONFIG.lastShowUpdateMsgVersion = version;
