@@ -86,7 +86,7 @@ html[lab-style*=dark] .blth_input {
     line-height: 25px;
 }
 html[lab-style*=dark] .blth_fs {
-    border: 1px solid var(--Ga2);
+    border: 2px solid var(--Ga2);
     line-height: 25px;
 }
 .chatLogDiv {
