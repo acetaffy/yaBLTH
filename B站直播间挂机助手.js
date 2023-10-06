@@ -2284,7 +2284,7 @@
           window.toast('[点赞直播间] 开始点赞直播间', 'info');
           for (let i = 0; i < likeTimes; i++) {
             for (const medal of medal_list) {
-              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id).then((response) => {
+              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id, times = 1).then((response) => {
                 MYDEBUG(`API.xlive.likeReportV3(${medal.real_roomid}) response`, response);
                 if (response.code !== 0) window.toast(`[点赞直播间] 直播间${medal.real_roomid}点赞失败 ${response.message}`, 'caution');
               });
