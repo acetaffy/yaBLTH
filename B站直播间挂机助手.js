@@ -1043,9 +1043,13 @@
       },
       creatSetBox: async () => {
         //添加按钮
+        const body = $('body');
+        let attr = body.attr('class');
+        if (/(player\-full\-win)|(fullscreen\-fix)/.test(attr)) { // 若已为全屏则不弹出设置窗口
+          SP_CONFIG.mainDisplay = "hide";
+        }
         const btnmsg = SP_CONFIG.mainDisplay === 'hide' ? '显示控制面板' : '隐藏控制面板';
         const btn = $(`<button class="blth_btn" style="display: inline-block; float: left; margin-right: 7px;cursor: pointer;box-shadow: 1px 1px 2px #00000075;" id="hiderbtn">${btnmsg}<br></button>`);
-        const body = $('body');
         const webHtml = $('html');
         const html = GM_getResourceText('main');
         function layerOpenAbout() {
@@ -1343,7 +1347,7 @@
         };
         const openMainWindow = () => {
           let settingTableoffset = $('.live-player-mounter').offset(),
-            settingTableHeight = $('.live-player-mounter').height();
+              settingTableHeight = $('.live-player-mounter').height();
           mainIndex = myopen({
             type: 1,
             title: false,
