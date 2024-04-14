@@ -1043,13 +1043,9 @@
       },
       creatSetBox: async () => {
         //添加按钮
-        const body = $('body');
-        let attr = body.attr('class');
-        if (/(player\-full\-win)|(fullscreen\-fix)/.test(attr)) { // 若已为全屏则不弹出设置窗口
-          SP_CONFIG.mainDisplay = "hide";
-        }
         const btnmsg = SP_CONFIG.mainDisplay === 'hide' ? '显示控制面板' : '隐藏控制面板';
         const btn = $(`<button class="blth_btn" style="display: inline-block; float: left; margin-right: 7px;cursor: pointer;box-shadow: 1px 1px 2px #00000075;" id="hiderbtn">${btnmsg}<br></button>`);
+        const body = $('body');
         const webHtml = $('html');
         const html = GM_getResourceText('main');
         function layerOpenAbout() {
@@ -1347,7 +1343,7 @@
         };
         const openMainWindow = () => {
           let settingTableoffset = $('.live-player-mounter').offset(),
-              settingTableHeight = $('.live-player-mounter').height();
+            settingTableHeight = $('.live-player-mounter').height();
           mainIndex = myopen({
             type: 1,
             title: false,
@@ -2288,7 +2284,7 @@
           window.toast('[点赞直播间] 开始点赞直播间', 'info');
           for (let i = 0; i < likeTimes; i++) {
             for (const medal of medal_list) {
-              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id, times = 1).then((response) => {
+              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id).then((response) => {
                 MYDEBUG(`API.xlive.likeReportV3(${medal.real_roomid}) response`, response);
                 if (response.code !== 0) window.toast(`[点赞直播间] 直播间${medal.real_roomid}点赞失败 ${response.message}`, 'caution');
               });
