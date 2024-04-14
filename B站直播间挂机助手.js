@@ -17,7 +17,7 @@
 // @compatible     firefox 77 or later
 // @compatible     opera 69 or later
 // @compatible     safari 13.1 or later
-// @version        6.1.8
+// @version        6.1.9
 // @match          *://live.bilibili.com/*
 // @exclude        *://live.bilibili.com/?*
 // @run-at         document-start
@@ -26,21 +26,21 @@
 // @connect        api.bilibili.com
 // @connect        api.vc.bilibili.com
 // @connect        live-trace.bilibili.com
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@bca9261faa84ffd8f804c85c1a5153d3aa27a9a3/assets/js/library/Ajax-hook.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/Ajax-hook.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/bliveproxy.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/layer.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/Emitter.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/BiliveHeart.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/libBilibiliToken.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/libWbiSign.min.js
+// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/js/library/BilibiliAPI_Mod.min.js
 // @require        https://gcore.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4dbe95160c430bc64757580f07489bb11e766fcb/assets/js/library/bliveproxy.min.js
-// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/libWbiSign.min.js
-// @require        https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@653280f300ba64dc08ea4f24be52998ef50d7011/assets/js/library/BilibiliAPI_Mod.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4368883c643af57c07117e43785cd28adcb0cb3e/assets/js/library/layer.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@f9fc6466ae78ead12ddcd2909e53fcdcc7528f78/assets/js/library/Emitter.min.js
 // @require        https://gcore.jsdelivr.net/npm/hotkeys-js@3.8.7/dist/hotkeys.min.js
 // @require        https://gcore.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@c117d15784f92f478196de0129c8e5653a9cb32e/assets/js/library/BiliveHeart.min.js
-// @require        https://gcore.jsdelivr.net/gh/andywang425/BLTH@4c2e8bc541656a8ea6d62d6055e8fd149caa4210/assets/js/library/libBilibiliToken.min.js
-// @resource       layerCss https://gcore.jsdelivr.net/gh/andywang425/BLTH@d25aa353c8c5b2d73d2217b1b43433a80100c61e/assets/css/layer.css
-// @resource       myCss    https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@9d35ee7e3e956c8158c8c0997e78d7ee2068d8ea/assets/css/myCss.min.css
-// @resource       main     https://gcore.jsdelivr.net/gh/andywang425/BLTH@16ad988dce34491d8479416911a2ac4691df45c3/assets/html/main.min.html
-// @resource       eula     https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@d1e436b7eb7a0e48278d82edcca0067f97906115/assets/html/eula.min.html
+// @resource       layerCss https://gcore.jsdelivr.net/gh/aacetaffy/yaBLTH@6.1.9/assets/css/layer.css
+// @resource       main     https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/html/main.min.html
+// @resource       myCss    https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/css/myCss.min.css
+// @resource       eula     https://gcore.jsdelivr.net/gh/acetaffy/yaBLTH@6.1.9/assets/html/eula.min.html
 // @grant          unsafeWindow
 // @grant          GM_xmlhttpRequest
 // @grant          GM_getResourceText
@@ -827,14 +827,9 @@
 <h2>更新内容</h2>
 
 <ul>
-<li><p>修复每日投币bug</p>
-<ul>
-<li>修复动态第一个视频已经投2币后，不继续运行的问题</li>
-<li>修复「给用户的视频投币」的功能</li>
-</ul>
-</li>
-<li><p>更适配b站深色模式</p>
-</li>
+<li><p>修复：每日任务>点赞直播间</p></li>
+<li><p>修复：dynamic_new API</p></li>
+<li><p>优化：若载入时处于全屏状态，则不会弹出面板</p></li>
 </ul>
 
 <hr><em style="color:grey;">
@@ -1043,9 +1038,13 @@
       },
       creatSetBox: async () => {
         //添加按钮
+        const body = $('body');
+        let attr = body.attr('class');
+        if (/(player\-full\-win)|(fullscreen\-fix)/.test(attr)) { // 若已为全屏则不弹出设置窗口
+          SP_CONFIG.mainDisplay = "hide";
+        }
         const btnmsg = SP_CONFIG.mainDisplay === 'hide' ? '显示控制面板' : '隐藏控制面板';
         const btn = $(`<button class="blth_btn" style="display: inline-block; float: left; margin-right: 7px;cursor: pointer;box-shadow: 1px 1px 2px #00000075;" id="hiderbtn">${btnmsg}<br></button>`);
-        const body = $('body');
         const webHtml = $('html');
         const html = GM_getResourceText('main');
         function layerOpenAbout() {
@@ -1343,7 +1342,7 @@
         };
         const openMainWindow = () => {
           let settingTableoffset = $('.live-player-mounter').offset(),
-            settingTableHeight = $('.live-player-mounter').height();
+              settingTableHeight = $('.live-player-mounter').height();
           mainIndex = myopen({
             type: 1,
             title: false,
@@ -2284,7 +2283,7 @@
           window.toast('[点赞直播间] 开始点赞直播间', 'info');
           for (let i = 0; i < likeTimes; i++) {
             for (const medal of medal_list) {
-              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id).then((response) => {
+              await BAPI.xlive.likeReportV3(medal.real_roomid, medal.target_id, times = 1).then((response) => {
                 MYDEBUG(`API.xlive.likeReportV3(${medal.real_roomid}) response`, response);
                 if (response.code !== 0) window.toast(`[点赞直播间] 直播间${medal.real_roomid}点赞失败 ${response.message}`, 'caution');
               });

@@ -329,7 +329,7 @@ var BAPI = {
         dynamic_new: (uid, type = 8) => {
             // 获取动态
             return BAPI.ajax({
-                url: 'dynamic_svr/v1/dynamic_svr/dynamic_new',
+                url: '//api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new',
                 data: {
                     uid: uid,
                     type: type // 8: 投稿视频; 268435455: 全部
