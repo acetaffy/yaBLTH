@@ -1,3 +1,10 @@
+> 更改用户习惯是最sd的一种做法  
+> ——《1》
+
+B站改了亲密度规则，此脚本已不再可用。
+
+-----
+
 <div align ="center">
     <img alt="BLTH logo" src="https://raw.githubusercontent.com/acetaffy/yaBLTH/master/assets/img/logo.min.svg" width="150">
 </div>
